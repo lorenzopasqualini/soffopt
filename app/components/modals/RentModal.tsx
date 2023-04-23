@@ -7,6 +7,7 @@ import Heading from '../Heading'
 import { categories } from '../navbar/Categories'
 import CategoryInput from '../inputs/CategoryInput'
 import CountrySelect from '../inputs/CountrySelect'
+import Counter from '../inputs/Counter'
 import dynamic from 'next/dynamic'
 
 enum STEPS {
@@ -48,6 +49,9 @@ const RentModal = () => {
 
     const category = watch('category')
     const location = watch('location')
+    const guestCount = watch('guestCount')
+    const bathroomCount = watch('bathroomCount')
+    const roomCount = watch('roomCount')
     const Map = useMemo(() => dynamic(() => import('../Map'), {
         ssr: false
     }), [location]);
@@ -108,6 +112,17 @@ const RentModal = () => {
                 <Heading title='Where is your home located?' subtitle='Pick a location' />
                 <CountrySelect value={location} onChange={(value) => setCustomValue('location', value)} />
                 <Map center={location?.latlng} />
+            </div>
+        )
+    }
+
+    if (step === STEPS.INFO) {
+        bodyContent = (
+            <div className='flex flex-col gap-8'>
+                <Heading title='What should we know about your home?' subtitle='Pick amenities' />
+                <Counter title='Guests' subtitle='How many?' value={guestCount} onChange={(value) => setCustomValue('guestCount', value)} />
+                <Counter title='Rooms' subtitle='How many?' value={roomCount} onChange={(value) => setCustomValue('roomCount', value)} />
+                <Counter title='Bathrooms' subtitle='How many?' value={bathroomCount} onChange={(value) => setCustomValue('bathroomCount', value)} />
             </div>
         )
     }

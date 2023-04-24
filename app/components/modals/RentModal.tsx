@@ -8,6 +8,7 @@ import { categories } from '../navbar/Categories'
 import CategoryInput from '../inputs/CategoryInput'
 import CountrySelect from '../inputs/CountrySelect'
 import Counter from '../inputs/Counter'
+import ImageUpload from '../inputs/ImageUpload'
 import dynamic from 'next/dynamic'
 
 enum STEPS {
@@ -52,6 +53,8 @@ const RentModal = () => {
     const guestCount = watch('guestCount')
     const bathroomCount = watch('bathroomCount')
     const roomCount = watch('roomCount')
+    const imageSrc = watch('imageSrc')
+
     const Map = useMemo(() => dynamic(() => import('../Map'), {
         ssr: false
     }), [location]);
@@ -123,6 +126,15 @@ const RentModal = () => {
                 <Counter title='Guests' subtitle='How many?' value={guestCount} onChange={(value) => setCustomValue('guestCount', value)} />
                 <Counter title='Rooms' subtitle='How many?' value={roomCount} onChange={(value) => setCustomValue('roomCount', value)} />
                 <Counter title='Bathrooms' subtitle='How many?' value={bathroomCount} onChange={(value) => setCustomValue('bathroomCount', value)} />
+            </div>
+        )
+    }
+
+    if (step === STEPS.IMAGES) {
+        bodyContent = (
+            <div className='flex flex-col gap-8'>
+                <Heading title='Add an image of your home' subtitle='Show off your place' />
+                <ImageUpload value={imageSrc} onChange={(value) => setCustomValue('imageSrc', value)} />
             </div>
         )
     }

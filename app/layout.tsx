@@ -10,8 +10,8 @@ import getCurrentUser from './actions/getCurrentUser'
 import SearchModal from './components/modals/SearchModal'
 
 export const metadata = {
-  title: 'VNB',
-  description: 'vbnb-clone',
+  title: 'rentvbnb',
+  description: 'rentvbnb',
 }
 
 const font = Nunito({
@@ -28,7 +28,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${font.className} bg-white`}>
+      <body className={font.className}>
         <ClientOnly>
           <ToasterProvider />
           <SearchModal />

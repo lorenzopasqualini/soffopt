@@ -73,7 +73,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                         <HeartButton listingId={data.id} currentUser={currentUser} />
                     </div>
                 </div>
-                <div className="font-semibold text-lg">{location?.region}, {location?.label}</div>
+                <div className="font-semibold text-lg">{location?.label}, {location?.region}</div>
                 <div className="font-light text-neutral-500"> {reservationDate || data.category} </div>
                 <div className="flex flex-row items-center gap-1">
                     <div className="font-semibold">$ {price}</div>

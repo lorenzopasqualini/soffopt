@@ -7,6 +7,7 @@ import RegisterModal from './components/modals/RegisterModal'
 import ClientOnly from './components/ClientOnly'
 import ToasterProvider from './providers/ToasterProvider'
 import getCurrentUser from './actions/getCurrentUser'
+import SearchModal from './components/modals/SearchModal'
 
 export const metadata = {
   title: 'VNB',
@@ -27,15 +28,16 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={`${font.className} bg-white`}>
         <ClientOnly>
           <ToasterProvider />
+          <SearchModal />
           <RentModal />
           <LoginModal />
           <RegisterModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
-        <div className='pb-20 pt-28'>
+        <div className='pb-20 pt-48'>
           {children}
         </div>
       </body>
